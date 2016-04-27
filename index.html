@@ -1,12 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="store">
 <head>
 	<meta charset="UTF-8">
 	<title>AngularJS Application | CodeSchool</title>
-	<link rel="stylesheet" type="text/css" href="style/vendor/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="styles/vendor/bootstrap.css">
 </head>
 <body>
+	<div ng-controller="StoreController as store" ng-hide="store.product.soldOut">
+		<div ng-repeat="product in store.products">
+			<h1>{{product.name}}</h1>
+			<h2>{{product.price}} </h2>
+			<p>{{product.description}}</p>
+			<button ng-show="store.product.canPurchase">Add to cart</button>
+		</div>
+	</div>
+
 	
-	<script type="text/javascript" href="scripts/vendor/angular.js"></script>
+	<script type="text/javascript" src="scripts/vendor/angular.js"></script>
+	<script type="text/javascript" src="scripts/app.js"></script>
 </body>
 </html>
