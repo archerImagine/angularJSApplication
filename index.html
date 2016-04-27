@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<title>AngularJS Application | CodeSchool</title>
 	<link rel="stylesheet" type="text/css" href="styles/vendor/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="styles/app.css">
 </head>
 <body>
 	<div ng-controller="StoreController as store" ng-hide="store.product.soldOut">
@@ -30,7 +31,38 @@
 					</div>
 					<div class="panel" ng-show="panel.isSelected(3)">
 						<h4>Review</h4>
-						<blockquote>None yet</blockquote>
+						<blockquote ng-repeat="review in product.reviews">
+                            <b>
+                                Stars: {{review.stars}}</b>
+                                {{review.body}}
+                            <cite>
+                                by: {{review.author}}
+                            </cite>
+                        </blockquote>
+                        <form name="reviewForm" ng-controller="ReviewControler as reviewCtrl" ng-submit="reviewForm.$valid && reviewCtrl.addReview(product)" novalidate>
+                            <blockqote>
+                                <b>
+                                    Stars: {{reviewCtrl.review.stars}}
+                                </b>
+                                {{reviewCtrl.review.body}}
+                                <cite>
+                                    by: {{reviewCtrl.review.author}}
+                                </cite>
+                            </blockqote>
+                            <br>
+                            <select ng-model="reviewCtrl.review.stars" required>
+                                <option value="1">1 Stars</option>
+                                <option value="2">2 Stars</option>
+                                <option value="3">3 Stars</option>
+                                <option value="4">4 Stars</option>
+                                <option value="5">5 Stars</option>
+                            </select>
+                            <textarea name="" id="" cols="30" rows="3" ng-model="reviewCtrl.review.body" required></textarea>
+                            <label>by:</label>
+                            <input type="email" ng-model="reviewCtrl.review.author" required>
+                            <div>reviewForm is {{reviewForm.$valid}}</div>
+                            <input type="submit" value="Submit">
+                        </form>
 					</div>
 				</section>
 			</li>

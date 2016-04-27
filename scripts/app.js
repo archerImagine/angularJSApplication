@@ -19,7 +19,18 @@
 					full: "assets/img/gem-01.gif",
 					thumb: "assets/img/gem-02.gif"
 				}
-			]
+			],
+            reviews: [{
+              stars: 5,
+              body: "I love this gem!",
+              author: "joe@thomas.com",
+              createdOn: 1397490980837
+            }, {
+              stars: 1,
+              body: "This gem sucks.",
+              author: "tim@hater.com",
+              createdOn: 1397490980837
+            }]
 		},
 		{
 			name : "Pentagonal Gems",
@@ -35,19 +46,36 @@
 					full: "assets/img/gem-03.gif",
 					thumb: "assets/img/gem-04.gif"
 				}
-			]
+			],
+            reviews: [{
+                stars: 3,
+                body: "I think this gem was just OK, could honestly use more shine, IMO.",
+                author: "JimmyDean@sausage.com",
+                createdOn: 1397490980837
+                }, {
+                stars: 4,
+                body: "Any gem with 12 faces is for me!",
+                author: "gemsRock@alyssaNicoll.com",
+                createdOn: 1397490980837
+            }]
 		}
 	];
 
 	app.controller('PanelController', function(){
 		this.tab=1;
 		this.selectTab = function(setTab){
-			console.log("selectTab");
 			this.tab = setTab;
 		};
 		this.isSelected = function(checkTab){
-			console.log("isSelected");
 			return this.tab === checkTab;
 		};
 	});
+
+    app.controller('ReviewControler', function(){
+        this.review = {};
+        this.addReview = function(product){
+            product.reviews.push(this.review);
+            this.review = {};
+        };
+    });
 })();
