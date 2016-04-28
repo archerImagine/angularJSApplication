@@ -56,19 +56,14 @@
                 stars: 4,
                 body: "Any gem with 12 faces is for me!",
                 author: "gemsRock@alyssaNicoll.com",
-                createdOn: 1397490980837
+                createdOn: 1397490980837,
+                date:'medium'
             }]
 		}
 	];
 
 	app.controller('PanelController', function(){
-		this.tab=1;
-		this.selectTab = function(setTab){
-			this.tab = setTab;
-		};
-		this.isSelected = function(checkTab){
-			return this.tab === checkTab;
-		};
+
 	});
 
     app.controller('ReviewControler', function(){
@@ -76,6 +71,29 @@
         this.addReview = function(product){
             product.reviews.push(this.review);
             this.review = {};
+        };
+    });
+
+    app.directive('productTitle', function(){
+        return {
+            restrict : 'E',
+            templateUrl:'product-title.html'
+        };
+    });
+    app.directive('productPanels', function(){
+        return {
+            restrict : 'E',
+            templateUrl:'product-panels.html',
+            controller : function(){
+                this.tab=1;
+                this.selectTab = function(setTab){
+                    this.tab = setTab;
+                };
+                this.isSelected = function(checkTab){
+                    return this.tab === checkTab;
+                };
+            },
+            controllerAs : 'panel'
         };
     });
 })();
